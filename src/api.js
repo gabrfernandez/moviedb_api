@@ -1,41 +1,13 @@
-const base_url = "https://api.themoviedb.org/3/"
+const base_url = "https://api.themoviedb.org/3/movie/"
 const api_key = 'api_key=829ba48c054bc241692ca990d4f013de'
 
-const getCurrentMonth = () =>{
-    const month = new Date().getMonth()+1;
-    if (month<10){
-        return `0${month}`;
-    }else{
-        return month;
-    }
-}
 
-const getCurrentDay= () =>{
-    const day = new Date().getDate();
-    if(day<10){
-        return `0${day}`;
-    }else{
-        return day;
-    }
-}
+export const popularMoviesURL = ()=> `${base_url}popular?${api_key}&language=en-US&page=1&page_size=10`
+export const upcomingMoviesURL= ()=> `${base_url}upcoming?${api_key}&language=en-US&page=1&page_size=10`
+export const newMoviesURL= ()=> `${base_url}now_playing?${api_key}&language=en-US&page=1&page_size=10`
 
-const currentYear = new Date().getFullYear();
-const currentMonth= getCurrentMonth();
-const currentDay = getCurrentDay();
-const currentDate = `${currentYear}-${currentMonth}-${currentDay}`;
-const lastYear = `${currentYear - 1}-${currentMonth}-${currentDay}`;
-const nextYear = `${currentYear + 1}-${currentMonth}-${currentDay}`;
+export const movieDetailURL=(movie_id)=>`${base_url}${movie_id}?${api_key}&language=en-US`
 
-const popular_movies = `movies?dates=${lastYear},${currentDate}&ordering=-rating&page_size=10`
-const upcoming_movies = `movies?dates=${currentDate}, ${nextYear}&ordering=-added&page_sie=10`
-const new_movies = `movies?dates=${lastYear}, ${currentDate}&ordering=-released&page_size=10`
-
-export const popularMoviesURL = ()=> `${base_url}discover/movie?${api_key}${popular_movies}`
-export const upcomingMoviesURL= ()=> `${base_url}${api_key}${upcoming_movies}`
-export const newMoviesURL= ()=> `${base_url}${api_key}${new_movies}`
-
-export const movieDetailURL=(movie_id)=>`${base_url}${api_key}movies/${movie_id}`
-
-export const movieScreenshotURL=(movie_id)=>`${base_url}${api_key}movies/${movie_id}/screenshots`
+export const movieScreenshotURL=(movie_id)=>`${base_url}${movie_id}/images?${api_key}&language=en-US`
 
 export const searchMovieURL=(movie_name)=>`${base_url}${api_key}movies?search=${movie_name}&page_size=10`

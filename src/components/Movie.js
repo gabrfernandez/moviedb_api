@@ -51,7 +51,7 @@ const StyledMovie = styled(motion.div)`
         width:100%;
         height: 40vh;
         object-fit:cover;
-    }
+    };
 `;
 
 export default Movie

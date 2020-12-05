@@ -56,7 +56,7 @@ const StyledHeader = styled(motion.nav)`
         border:none;
         padding:0.5rem 2rem;
         cursor:pointer;
-        background:##ff7676;
+        background:gray;
         color:white
     }
 `
@@ -67,6 +67,7 @@ const Logo=styled(motion.div)`
     cursor:pointer;
     img{
         height:2rem;
+        width:2rem;
     }
 `
 export default Header

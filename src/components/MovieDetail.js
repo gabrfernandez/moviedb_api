@@ -4,6 +4,9 @@ import {motion} from "framer-motion"
 import {useSelector} from "react-redux"
 import { useHistory } from 'react-router-dom'
 import {smallImage} from '../util'
+import starFull from "../img/star-full.png"
+import starEmpty from "../img/star-empty.png"
+
 
 function MovieDetail({pathId}) {
 
@@ -17,6 +20,19 @@ function MovieDetail({pathId}) {
         }
     }
 
+    const getStars=()=>{
+        const stars=[];
+        const rating=Math.floor(movie.vote_average);
+        for(let i =1; i<=10;i++){
+            if(i<=rating){
+                stars.push(<img src={starFull} alt="starFull" key={i}></img>)
+            }else{
+                stars.push(<img src={starEmpty} alt="starEmpty" key={i}></img>)
+            }
+        }
+        return stars
+    }
+
     const {screen, movie, isLoading} = useSelector(
         (state)=> state.detail
     );
@@ -28,28 +44,34 @@ function MovieDetail({pathId}) {
                         <Stats>
                             <div className="rating">
                                 <motion.h3 layoutId={`title ${pathId}`}>{movie.title}</motion.h3>
-                                <p>Rating: {movie.vote_average}</p>
+                                <p>Vote Averate: {movie.vote_average}</p>
+                                {getStars()}
                             </div>
                             <Info>
-                                <h3>Release Date</h3>
+                                <h3>Release Date:</h3>
                                 <p>{movie.release_date}</p>
                             </Info>
                         </Stats>
                         <Media>
                             <motion.img 
                                 layoutId={`image ${pathId}`}
-                                src={smallImage(movie.backdrop_path, 1280)}
+                                src={smallImage(`//image.tmdb.org/t/p/w185_and_h278_bestv2/${movie.poster_path}`, 1280)}
                                 alt={movie.backdrop_path}
                             />
                         </Media>
                         <Description>
+                            <h3>Overview:</h3>
                             <p>{movie.overview}</p>
                         </Description>
-                        {/* <div className="gallery">
-                            {screen.posters.map((screen)=>(
-                                <img src={screen.image} key={screen.id} alt={screen.image} />
+                        <div className="gallery">
+                            {screen.backdrops.map((screen)=>(
+                                <img 
+                                    src={smallImage(`//image.tmdb.org/t/p/w185_and_h278_face${screen.file_path}`, 1280)} alt={screen.file_path} 
+                                    key={screen.id} 
+                                    alt={screen.image} 
+                                />
                             ))}
-                        </div> */}
+                        </div>
                     </Detail>
                 </CardShadow>
             )}
@@ -92,6 +114,11 @@ const Stats = styled(motion.div)`
     display:flex;
     align-items:center;
     justify-content:space-between;
+    img{
+        width:2rem;
+        height:2rem;
+        display:inline;
+    }
 `
 
 const Info= styled(motion.div)`
@@ -102,7 +129,7 @@ const Media=styled(motion.div)`
     margin-top: 5rem;
     img{
         width:100%;
-    }
+    };
 `
 
 const Description=styled(motion.div)`

@@ -6,6 +6,7 @@ import { useHistory } from 'react-router-dom'
 import {smallImage} from '../util'
 import starFull from "../img/star-full.png"
 import starEmpty from "../img/star-empty.png"
+import ReactPlayer from 'react-player'
 
 
 function MovieDetail({pathId}) {
@@ -33,7 +34,7 @@ function MovieDetail({pathId}) {
         return stars
     }
 
-    const {screen, movie, isLoading} = useSelector(
+    const {screen, movie, video, isLoading} = useSelector(
         (state)=> state.detail
     );
     return (
@@ -44,7 +45,7 @@ function MovieDetail({pathId}) {
                         <Stats>
                             <div className="rating">
                                 <motion.h3 layoutId={`title ${pathId}`}>{movie.title}</motion.h3>
-                                <p>Vote Averate: {movie.vote_average}</p>
+                                <p>Vote Average: {movie.vote_average}</p>
                                 {getStars()}
                             </div>
                             <Info>
@@ -63,12 +64,19 @@ function MovieDetail({pathId}) {
                             <h3>Overview:</h3>
                             <p>{movie.overview}</p>
                         </Description>
+
+                        <div className="video">
+                            <ReactPlayer
+                                url={`https://www.youtube.com/watch?v=${video.results[0].key}`}
+                                controls="true"
+                            />
+                        </div>
                         <div className="gallery">
                             {screen.backdrops.map((screen)=>(
                                 <img 
-                                    src={smallImage(`//image.tmdb.org/t/p/w185_and_h278_face${screen.file_path}`, 1280)} alt={screen.file_path} 
+                                    src={smallImage(`//image.tmdb.org/t/p/w185_and_h278_face${screen.file_path}`, 1280)} 
+                                    alt={screen.file_path} 
                                     key={screen.id} 
-                                    alt={screen.image} 
                                 />
                             ))}
                         </div>

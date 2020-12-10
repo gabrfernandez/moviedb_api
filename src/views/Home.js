@@ -39,7 +39,7 @@ function Home() {
                                         id={movie.id}
                                         title={movie.title}
                                         released={movie.release_date}
-                                        image={`//image.tmdb.org/t/p/w185_and_h278_bestv2/${movie.poster_path}`}
+                                        image={`//image.tmdb.org/t/p/w500/${movie.poster_path}`}
                                     />
                                 ))}
                             </Movies>
@@ -55,7 +55,7 @@ function Home() {
                                 id={movie.id}
                                 title={movie.title}
                                 released={movie.release_date}
-                                image={`//image.tmdb.org/t/p/w185_and_h278_bestv2/${movie.poster_path}`}
+                                image={`//image.tmdb.org/t/p/w500/${movie.poster_path}`}
                             />
                         ))}
                     </Movies>
@@ -67,7 +67,7 @@ function Home() {
                                 id={movie.id}
                                 title={movie.title}
                                 released={movie.release_date}
-                                image={`//image.tmdb.org/t/p/w185_and_h278_bestv2/${movie.poster_path}`}
+                                image={`//image.tmdb.org/t/p/w500/${movie.poster_path}`}
                             />
                         ))}
                     </Movies>
@@ -79,7 +79,7 @@ function Home() {
                             id={movie.id}
                             title={movie.title}
                             released={movie.release_date}
-                            image={`//image.tmdb.org/t/p/w185_and_h278_bestv2/${movie.poster_path}`}
+                            image={`//image.tmdb.org/t/p/w500/${movie.poster_path}`}
                         />
                         ))}
                     </Movies>

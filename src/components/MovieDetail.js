@@ -3,7 +3,6 @@ import styled from 'styled-components'
 import {motion} from "framer-motion"
 import {useSelector} from "react-redux"
 import { useHistory } from 'react-router-dom'
-import {smallImage} from '../util'
 import starFull from "../img/star-full.png"
 import starEmpty from "../img/star-empty.png"
 import ReactPlayer from 'react-player'
@@ -56,7 +55,7 @@ function MovieDetail({pathId}) {
                         <Media>
                             <motion.img 
                                 layoutId={`image ${pathId}`}
-                                src={smallImage(`//image.tmdb.org/t/p/w185_and_h278_bestv2/${movie.poster_path}`, 1280)}
+                                src={`//image.tmdb.org/t/p/w500/${movie.poster_path}`}
                                 alt={movie.backdrop_path}
                             />
                         </Media>
@@ -65,21 +64,27 @@ function MovieDetail({pathId}) {
                             <p>{movie.overview}</p>
                         </Description>
 
-                        <div className="video">
+                        <Video>
                             <ReactPlayer
                                 url={`https://www.youtube.com/watch?v=${video.results[0].key}`}
                                 controls="true"
+                                width='80%'
                             />
-                        </div>
-                        <div className="gallery">
-                            {screen.backdrops.map((screen)=>(
-                                <img 
-                                    src={smallImage(`//image.tmdb.org/t/p/w185_and_h278_face${screen.file_path}`, 1280)} 
-                                    alt={screen.file_path} 
-                                    key={screen.id} 
-                                />
-                            ))}
-                        </div>
+                        </Video>
+                        {screen.backdrops.length ? (
+                            <Gallery>
+                                <h3>Backdrops</h3>
+                                {screen.backdrops.map((screen)=>(
+                                    <img  
+                                        src={`//image.tmdb.org/t/p/w500/${screen.file_path}`}
+                                        alt={screen.file_path} 
+                                        key={screen.id} 
+                                    />
+                                ))}
+                            </Gallery>
+                        ):(
+                            ""
+                        )}
                     </Detail>
                 </CardShadow>
             )}
@@ -142,5 +147,14 @@ const Media=styled(motion.div)`
 
 const Description=styled(motion.div)`
     margin: 5rem 0rem;
+`
+const Video = styled(motion.div)`
+    margin: auto;
+`
+const Gallery = styled(motion.div)`
+    img{
+        height:auto;
+        width:100%;
+    }
 `
 export default MovieDetail

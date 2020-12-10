@@ -4,7 +4,6 @@ import {loadDetail} from '../actions/detailAction'
 import {Link} from 'react-router-dom'
 import styled from "styled-components"
 import {motion} from "framer-motion"
-import {smallImage} from '../util'
 import {popup} from '../animations'
 
 
@@ -32,7 +31,7 @@ function Movie({title, released, image, id}) {
                 <p>{released}</p>
                 <motion.img 
                     layoutId={`image ${stringPathId}`}
-                    src={smallImage(image, 640)}
+                    src={image}
                     alt={title}
                 />
             </Link>

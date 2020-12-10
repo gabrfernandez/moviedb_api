@@ -56,8 +56,11 @@ const StyledHeader = styled(motion.nav)`
         border:none;
         padding:0.5rem 2rem;
         cursor:pointer;
-        background:gray;
+        background:green;
         color:white
+    }
+    button:hover{
+        background:darkgreen;
     }
 `
 const Logo=styled(motion.div)`

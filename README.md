@@ -1,4 +1,5 @@
-#MovieDB API App
+# MovieDB API App
+
 Utilize React, MovieDB api, Framer Motion, Redux, Thunk, Styled Components
 Deployed on Firebase https://moviedb-8ae2d.web.app/
 
